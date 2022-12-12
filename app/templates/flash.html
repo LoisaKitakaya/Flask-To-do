@@ -1,0 +1,53 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+<!--  -->
+{% if messages %}
+<!--  -->
+{% for category, message in messages %}
+<!--  -->
+{% if category == 'message' %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <i class="bi bi-check-circle"></i> {{message}}
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+{% elif category == 'info' %}
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  <i class="bi bi-info-circle"></i> {{message}}
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+{% elif category == 'warning' %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <i class="bi bi-exclamation-circle"></i> {{message}}
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+{% elif category == 'error' %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <i class="bi bi-x-circle"></i> {{message}}
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+{% endif %}
+<!--  -->
+{% endfor %}
+<!--  -->
+{% endif %}
+<!--  -->
+{% endwith %}

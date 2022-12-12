@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+<!-- title -->
+{% block title %} Signup {% endblock %}
+<!-- title -->
+
+<!-- app -->
+{% block app %}
+<div class="app py-5 container">
+  <!-- flash -->
+  {% include 'flash.html' %}
+  <!-- flash -->
+  <div class="card text-bg-light mt-5 mb-3 w-50 mx-auto shadow-sm">
+    <div class="card-body">
+      <h3 class="text-center mb-3">Create a user account</h3>
+      <hr class="mx-3" />
+      <form action="/signup" method="post" class="mx-3">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="username"
+            class="form-control"
+            name="username"
+            placeholder="e.g. johndoe"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            placeholder="e.g. name@example.com"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password_one" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password_one"
+            placeholder="************"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password_two" class="form-label">Confirm password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password_two"
+            placeholder="************"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-success container-fluid">
+            Signup
+          </button>
+        </div>
+      </form>
+      <hr class="mx-3" />
+    </div>
+  </div>
+  <p class="text-center">
+    Already have an account?
+    <a href="{{ url_for('todo.login') }}">Login</a> here.
+  </p>
+</div>
+{% endblock %}
+<!-- app -->
