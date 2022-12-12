@@ -17,3 +17,46 @@ html {
   min-height: 100vh !important;
   background-color: whitesmoke !important;
 }
+
+.table-header {
+  width: 7rem !important;
+  text-align: center !important;
+}
+
+.table-btn {
+  width: 4rem !important;
+  text-align: center !important;
+}
+
+.table-number {
+  width: 4rem !important;
+}
+
+.my-btn {
+  cursor: pointer !important;
+}
+
+.bg-home {
+  background-color: #22d3ee86 !important;
+  padding: 0 0.25rem !important;
+}
+
+.bg-work {
+  background-color: #a1a1aa85 !important;
+  padding: 0 0.25rem !important;
+}
+
+.bg-social {
+  background-color: #a2e63585 !important;
+  padding: 0 0.25rem !important;
+}
+
+.bg-urgent {
+  background-color: #f8717185 !important;
+  padding: 0 0.25rem !important;
+}
+
+.bg-personal {
+  background-color: #701a7585 !important;
+  padding: 0 0.25rem !important;
+}

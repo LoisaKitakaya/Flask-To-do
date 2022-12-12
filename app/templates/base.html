@@ -43,10 +43,16 @@
   </head>
   <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light border-bottom">
       <div class="container">
-        <a class="navbar-brand text-primary" href="{{ url_for('todo.index') }}">
-          <i class="bi bi-house-fill text-primary"></i>
+        <a
+          class="navbar-brand"
+          href="{{ url_for('todo.index') }}"
+          onmouseenter="hoverState()"
+          onmouseleave="hoverStateReverse()"
+          id="page-banner"
+        >
+          <i class="bi bi-card-checklist"></i>
           Todo App
         </a>
         <button
@@ -65,9 +71,15 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('todo.about') }}">About</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Logout</a>
+            </li>
           </ul>
           <span class="navbar-text"
-            >Welcome, <span class="text-success">username</span></span
+            >Welcome,
+            <span class="text-success text-decoration-underline"
+              >username</span
+            ></span
           >
         </div>
       </div>
@@ -81,6 +93,14 @@
     </div>
 
     <!-- footer -->
+    <footer class="bg-light border-top">
+      <div class="container py-5">
+        <p class="text-center">
+          Made with <i class="bi bi-suit-heart-fill text-danger"></i> by
+          <a href="https://freedomloisa.netlify.app/">Freedom Loisa</a>
+        </p>
+      </div>
+    </footer>
     <!-- footer -->
   </body>
   <script src="{{ url_for('static', filename='script.js') }}"></script>

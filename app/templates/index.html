@@ -6,8 +6,16 @@
 
 <!-- app -->
 {% block app %}
-<div class="container">
-  <h1>Home page</h1>
+<div class="container py-5">
+  <div class="d-flex align-items-center justify-content-between mb-5">
+    <h1>Your Todo List</h1>
+    <button class="btn btn-primary btn-sm">
+      <i class="bi bi-calendar2-plus-fill"></i> Add task
+    </button>
+  </div>
+  <!-- table -->
+  {% include 'table.html' %}
+  <!-- table -->
 </div>
 {% endblock %}
 <!-- app -->
