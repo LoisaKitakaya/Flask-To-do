@@ -1,6 +1,8 @@
 from flask import Flask
 from config import Config
 
+from app.extensions import db
+
 from app.todo import bp as todo_bp
 
 def create_app(config_object=Config):
@@ -9,6 +11,7 @@ def create_app(config_object=Config):
     app.config.from_object(config_object)
 
     # initialize extensions
+    db.init_app(app)
 
     # register blueprints
     app.register_blueprint(todo_bp)
