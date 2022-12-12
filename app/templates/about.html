@@ -6,7 +6,11 @@
 
 <!-- app -->
 {% block app %}
-<div class="container py-5">
+<!-- navbar -->
+{% include 'navbar.html' %}
+<!-- navbar -->
+
+<div class="container py-5 app">
   <div class="d-flex align-items-center justify-content-between mb-3">
     <h1>About Todo App</h1>
     <a
@@ -18,5 +22,9 @@
   <!-- about content -->
   <!-- about content -->
 </div>
+
+<!-- footer -->
+{% include 'footer.html' %}
+<!-- footer -->
 {% endblock %}
 <!-- app -->
