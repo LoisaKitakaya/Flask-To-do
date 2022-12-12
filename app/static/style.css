@@ -14,12 +14,12 @@ html {
 }
 
 #app {
-  min-height: 100vh !important;
+  min-height: 92vh !important;
   background-color: whitesmoke !important;
 }
 
 .app {
-  min-height: 100vh !important;
+  min-height: 92vh !important;
 }
 
 .table-header {
