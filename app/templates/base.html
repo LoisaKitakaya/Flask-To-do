@@ -45,12 +45,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container">
-        <a
-          class="navbar-brand text-primary"
-          id="home"
-          href="{{ url_for('todo.index') }}"
-          onclick="removeHighlight()"
-        >
+        <a class="navbar-brand text-primary" href="{{ url_for('todo.index') }}">
           <i class="bi bi-house-fill text-primary"></i>
           Todo App
         </a>
@@ -67,8 +62,8 @@
         </button>
         <div class="collapse navbar-collapse pt-1" id="navbarText">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item" id="about" onclick="addHighlight()">
-              <a class="nav-link" href="#">About</a>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('todo.about') }}">About</a>
             </li>
           </ul>
           <span class="navbar-text"
