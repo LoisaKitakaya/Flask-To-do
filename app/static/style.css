@@ -64,3 +64,7 @@ html {
   background-color: #701a7585 !important;
   padding: 0 0.25rem !important;
 }
+
+.font-kanit {
+  font-family: "Kanit", sans-serif !important;
+}
