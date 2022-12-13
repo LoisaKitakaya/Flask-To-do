@@ -1,0 +1,68 @@
+<div
+  class="modal fade"
+  id="addTaskModal"
+  tabindex="-1"
+  aria-labelledby="addTaskModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addTaskModalLabel">Add Task</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="/add_task" method="post">
+          <div class="mb-3">
+            <label for="task" class="form-label">Task name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="task"
+              placeholder="e.g. Buy new computer tomorrow"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="label" class="form-label">Task label</label>
+            <select
+              class="form-select"
+              aria-label="Task labels"
+              name="label"
+              required
+            >
+              <option selected>Categorize your task</option>
+              <option value="Home">Home</option>
+              <option value="Work">Work</option>
+              <option value="Social">Social</option>
+              <option value="Urgent">Urgent</option>
+              <option value="Personal">Personal</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Task description</label>
+            <textarea
+              class="form-control"
+              name="description"
+              placeholder="Briefly describe your task"
+              required
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-success container-fluid">
+              <i class="bi bi-calendar2-plus-fill"></i> Add new task
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
