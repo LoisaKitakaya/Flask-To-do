@@ -1,4 +1,6 @@
 import re
+import time
+from datetime import datetime
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -157,14 +159,15 @@ def add_task():
     label = request.form.get('label')
     description = request.form.get('description')
     due_date = request.form.get('due_date')
-
     user_id = current_user.id
+
+    new_date = datetime.strptime(str(due_date), '%Y-%m-%dT%H:%M')
 
     new_task = Todo(
         task=task,
         label=label,
         description=description,
-        due_date=str(due_date),
+        due_date=new_date.strftime('%c'),
         user_id=user_id
     )
 
@@ -221,7 +224,7 @@ def task(task_id):
 
     return render_template('task.html', user_task=specific_task)
 
-@bp.route('/delete/<task_id>/', methods=['POST'])
+@bp.route('/delete/<task_id>/', methods=['GET'])
 def delete(task_id):
 
     '''Delete specific task'''

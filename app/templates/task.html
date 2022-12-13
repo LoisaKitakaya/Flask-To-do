@@ -27,7 +27,8 @@
         }}
       </h4>
       <h4>
-        <span class="fw-semibold">Due date:</span> {{ user_task.due_date }}
+        <span class="fw-semibold">Due:</span>
+        <span class="fst-italic">{{ user_task.due_date }}</span>
       </h4>
       <hr class="my-3" />
       <div class="mb-3">
@@ -78,7 +79,12 @@
         {% endif %}
       </div>
       <hr class="my-3" />
-      <form action="{{ url_for('todo.task', task_id=user_task.id) }}" method="post" class="rounded bg-light shadow-sm p-3" id="complete-form">
+      <form
+        action="{{ url_for('todo.task', task_id=user_task.id) }}"
+        method="post"
+        class="rounded bg-light shadow-sm p-3"
+        id="complete-form"
+      >
         <div class="form-check form-switch">
           {% if user_task.status == False %}
           <input
@@ -104,7 +110,6 @@
             >Mark task as not completed</label
           >
           {% endif %}
-          
         </div>
       </form>
     </div>
