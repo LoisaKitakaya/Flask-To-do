@@ -16,7 +16,11 @@
   <!-- flash -->
   <div class="d-flex align-items-center justify-content-between mb-5">
     <h1>Your Todo List</h1>
-    <button class="btn btn-primary btn-sm">
+    <button
+      class="btn btn-primary btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#addTaskModal"
+    >
       <i class="bi bi-calendar2-plus-fill"></i> Add task
     </button>
   </div>
@@ -24,6 +28,10 @@
   {% include 'table.html' %}
   <!-- table -->
 </div>
+
+<!-- add task modal -->
+{% include 'addtask.html' %}
+<!-- add task modal -->
 
 <!-- footer -->
 {% include 'footer.html' %}
