@@ -24,6 +24,7 @@ class Todo(db.Model):
     label = db.Column(db.String(50))
     description = db.Column(db.Text)
     due_date = db.Column(db.String(50))
+    status = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self) -> str:
