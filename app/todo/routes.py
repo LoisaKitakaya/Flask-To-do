@@ -145,3 +145,38 @@ def logout():
 
     flash("Logged out successfully.", "message")
     return redirect(url_for('todo.login'))
+
+@bp.route('/add_task/', methods=['POST'])
+def add_task():
+
+    '''Add new task to db'''
+
+    task = request.form.get('task')
+    label = request.form.get('label')
+    description = request.form.get('description')
+    due_date = request.form.get('due_date')
+
+    user_id = current_user.id
+
+    new_task = Todo(
+        task=task,
+        label=label,
+        description=description,
+        due_date=str(due_date),
+        user_id=user_id
+    )
+
+    try:
+
+        db.session.add(new_task)
+
+    except:
+
+        raise
+
+    else:
+
+        db.session.commit()
+
+        flash(f'Task {task} has been added.', 'message')
+        return redirect(url_for('todo.index'))
