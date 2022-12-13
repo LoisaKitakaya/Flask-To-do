@@ -13,7 +13,9 @@ def index():
 
     '''App's homepage'''
 
-    return render_template('index.html', current_user=current_user)
+    tasks = Todo.query.filter_by(user_id=current_user.id).all()
+
+    return render_template('index.html', current_user=current_user, user_tasks=tasks)
 
 @bp.route('/about/')
 def about():
@@ -172,11 +174,49 @@ def add_task():
 
     except:
 
-        raise
+        flash("Something went wrong.", "error")
+        return redirect(url_for('todo.index'))
 
     else:
 
         db.session.commit()
 
         flash(f'Task {task} has been added.', 'message')
+        return redirect(url_for('todo.index'))
+
+@bp.route('/task/<int:task_id>/', methods=['GET', 'POST'])
+def task(task_id):
+
+    '''Open specific task'''
+
+    return render_template('task.html')
+
+@bp.route('/delete/<task_id>/', methods=['GET', 'POST'])
+def delete(task_id):
+
+    '''Delete specific task'''
+
+    try:
+
+        task_to_delete = Todo.query.get(int(task_id))
+
+    except:
+
+        flash("Something went wrong.", "error")
+        return redirect(url_for('todo.index'))
+
+    try:
+
+        db.session.delete(task_to_delete)
+
+    except:
+
+        flash("Something went wrong.", "error")
+        return redirect(url_for('todo.index'))
+
+    else:
+
+        db.session.commit()
+
+        flash(f'Task {task_to_delete.task} has been deleted.', 'message')
         return redirect(url_for('todo.index'))

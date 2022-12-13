@@ -1,4 +1,5 @@
 <div class="table-responsive">
+  {% if user_tasks %}
   <table class="table table-light table-hover shadow-sm">
     <thead class="table-dark">
       <tr>
@@ -10,45 +11,66 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
+      {% for task in user_tasks %}
       <tr>
-        <th scope="row">1</th>
-        <td>Lorem ipsum dolor sit amet.</td>
-        <td class="table-header">
-          <span class="rounded bg-home">Home</span>
+        <th scope="row">{{loop.index}}</th>
+        <td>
+          <a href="{{ url_for('todo.task', task_id=task.id) }}"
+            >{{ task.task }}</a
+          >
         </td>
         <td class="table-header">
-          <i class="bi bi-check-circle-fill text-success"></i>
-        </td>
-        <td class="table-btn my-btn">
-          <i class="bi bi-trash text-danger"></i>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Lorem ipsum dolor sit amet.</td>
-        <td class="table-header">
-          <span class="rounded bg-personal">Personal</span>
-        </td>
-        <td class="table-header">
-          <i class="bi bi-check-circle-fill text-success"></i>
-        </td>
-        <td class="table-btn my-btn">
-          <i class="bi bi-trash text-danger"></i>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Lorem ipsum dolor sit amet.</td>
-        <td class="table-header">
-          <span class="rounded bg-urgent">Urgent</span>
+          {% if task.label == 'Home' %}
+          <span class="rounded bg-home">{{ task.label }}</span>
+          {% elif task.label == 'Work' %}
+          <span class="rounded bg-work">{{ task.label }}</span>
+          {% elif task.label == 'Social' %}
+          <span class="rounded bg-social">{{ task.label }}</span>
+          {% elif task.label == 'Urgent' %}
+          <span class="rounded bg-urgent">{{ task.label }}</span>
+          {% elif task.label == 'Personal' %}
+          <span class="rounded bg-personal">{{ task.label }}</span>
+          {% endif %}
         </td>
         <td class="table-header">
+          {% if task.status == False %}
           <i class="bi bi-x-circle-fill text-warning"></i>
+          {% elif task.status == True %}
+          <i class="bi bi-check-circle-fill text-success"></i>
+          {% endif %}
         </td>
         <td class="table-btn my-btn">
-          <i class="bi bi-trash text-danger"></i>
+          <a href="{{ url_for('todo.delete', task_id=task.id) }}"
+            ><i class="bi bi-trash text-danger"></i
+          ></a>
         </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <table class="table table-light table-hover shadow-sm">
+    <caption>
+      It feels very empty over here... Add a new task.
+    </caption>
+    <thead class="table-dark">
+      <tr>
+        <th scope="col" class="table-number">#</th>
+        <th scope="col">Todo</th>
+        <th scope="col" class="table-header">Label</th>
+        <th scope="col" class="table-header">Complete</th>
+        <th scope="col" class="table-btn my-btn">Delete</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td class="table-header"></td>
+        <td class="table-header"></td>
+        <td class="table-btn my-btn"></td>
       </tr>
     </tbody>
   </table>
+  {% endif %}
 </div>
