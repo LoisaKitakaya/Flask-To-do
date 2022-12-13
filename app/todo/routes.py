@@ -184,14 +184,44 @@ def add_task():
         flash(f'Task {task} has been added.', 'message')
         return redirect(url_for('todo.index'))
 
-@bp.route('/task/<int:task_id>/', methods=['GET', 'POST'])
+@bp.route('/task/<task_id>/', methods=['GET', 'POST'])
 def task(task_id):
 
     '''Open specific task'''
 
-    return render_template('task.html')
+    try:
 
-@bp.route('/delete/<task_id>/', methods=['GET', 'POST'])
+        specific_task = Todo.query.get(int(task_id))
+
+    except:
+
+        flash("Something went wrong.", "error")
+        return redirect(url_for('todo.index'))
+
+    if request.method == 'POST':
+
+        complete_boolean = True if request.form.get('status') else False
+        task_status = 'completed' if request.form.get('status') else 'not completed'
+
+        try:
+
+            specific_task.status = complete_boolean
+
+        except:
+
+            flash("Something went wrong.", "error")
+            return redirect(url_for('todo.index'))
+
+        else:
+
+            db.session.commit()
+
+            flash(f'Task {specific_task.task} has been marked as {task_status}.', 'message')
+            return redirect(url_for('todo.index'))
+
+    return render_template('task.html', user_task=specific_task)
+
+@bp.route('/delete/<task_id>/', methods=['POST'])
 def delete(task_id):
 
     '''Delete specific task'''

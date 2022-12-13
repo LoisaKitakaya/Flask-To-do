@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+<!-- title -->
+{% block title %} {{user_task.task}} {% endblock %}
+<!-- title -->
+
+<!-- app -->
+{% block app %}
+<!-- navbar -->
+{% include 'navbar.html' %}
+<!-- navbar -->
+
+<div class="container py-5 app">
+  <div class="d-flex align-items-center justify-content-between mb-5">
+    <h1>Your Task</h1>
+    <button class="btn btn-secondary btn-sm" onclick="window.history.back()">
+      <i class="bi bi-arrow-left-short"></i> Go back
+    </button>
+  </div>
+  <!-- task -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h4><span class="fw-semibold">Task:</span> {{ user_task.task }}</h4>
+      <hr class="my-3" />
+      <h4 class="mb-3">
+        <span class="fw-semibold">Description:</span> {{ user_task.description
+        }}
+      </h4>
+      <h4>
+        <span class="fw-semibold">Due date:</span> {{ user_task.due_date }}
+      </h4>
+      <hr class="my-3" />
+      <div class="mb-3">
+        {% if user_task.label == 'Home' %}
+        <p>
+          <span class="fw-semibold">Label:</span>
+          <span class="rounded bg-home">{{ user_task.label }}</span>
+        </p>
+        {% elif user_task.label == 'Work' %}
+        <p>
+          <span class="fw-semibold">Label:</span>
+          <span class="rounded bg-work">{{ user_task.label }}</span>
+        </p>
+        {% elif user_task.label == 'Social' %}
+        <p>
+          <span class="fw-semibold">Label:</span>
+          <span class="rounded bg-social">{{ user_task.label }}</span>
+        </p>
+        {% elif user_task.label == 'Urgent' %}
+        <p>
+          <span class="fw-semibold">Label:</span>
+          <span class="rounded bg-urgent">{{ user_task.label }}</span>
+        </p>
+        {% elif user_task.label == 'Personal' %}
+        <p>
+          <span class="fw-semibold">Label:</span>
+          <span class="rounded bg-personal">{{ user_task.label }}</span>
+        </p>
+        {% endif %}
+      </div>
+      <div>
+        {% if user_task.status == False %}
+        <p>
+          <span class="fw-semibold">Completed:</span>
+          <span class="rounded px-1"
+            >{{ user_task.status }}
+            <i class="bi bi-x-circle-fill text-warning"></i
+          ></span>
+        </p>
+        {% elif user_task.status == True %}
+        <p>
+          <span class="fw-semibold">Completed:</span>
+          <span class="rounded px-1"
+            >{{ user_task.status }}
+            <i class="bi bi-check-circle-fill text-success"></i
+          ></span>
+        </p>
+        {% endif %}
+      </div>
+      <hr class="my-3" />
+      <form action="{{ url_for('todo.task', task_id=user_task.id) }}" method="post" class="rounded bg-light shadow-sm p-3" id="complete-form">
+        <div class="form-check form-switch">
+          {% if user_task.status == False %}
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            name="status"
+            onclick="setComplete()"
+          />
+          <label class="form-check-label fw-semibold" for="status"
+            >Mark task as completed</label
+          >
+          {% elif user_task.status == True %}
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            name="status"
+            onclick="setComplete()"
+            checked
+          />
+          <label class="form-check-label fw-semibold" for="status"
+            >Mark task as not completed</label
+          >
+          {% endif %}
+          
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- task -->
+</div>
+
+<!-- footer -->
+{% include 'footer.html' %}
+<!-- footer -->
+{% endblock %}
+<!-- app -->
